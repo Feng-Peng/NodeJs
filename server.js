@@ -10,12 +10,10 @@ server.on('connection', function (socket) {
     console.log('有新的链接');
     // socket调用了write方法之后会触发data事件
     socket.on('data', function (data) {
-        console.log(data.toString());
-        socket.write('hello client');
-    })
-    // socket调用end方法时候，socket的close事件就会触发
-    socket.on('close', function () {
-        console.log('客户端已关闭');
-        server.close(); // 关闭服务器
+        // 此时的参数data.toString()得到的就是http请求的请求头，获取url中的参数地址
+        const request =  data.toString().split('/r/n');
+        const url = request[0].split(' ')[1];
+        // 向浏览器回复信息时需要带有请求头，请求头与请求体之间有两个\r\n，请求头之间有一个\r\n
+        socket.write("HTTP 200OK\r\nContent-type:text/html\r\nService:DWS/1.1\r\n\r\n<html><body><h1>hello browser</h1></body></html>")
     })
 })

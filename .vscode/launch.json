@@ -7,15 +7,6 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "客户端",
-            "program": "${workspaceFolder}/client.js",
-            "skipFiles": [
-                "<node_internals>/**"
-            ]
-        },
-        {
-            "type": "node",
-            "request": "launch",
             "name": "服务器",
             "skipFiles": [
                 "<node_internals>/**"
