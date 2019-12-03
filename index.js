@@ -3,12 +3,10 @@ const url = require('url');
 const fs = require('fs');
 const http = require('http');
 const loader = require('./loader');
-const log = require('./log');
 
 const server = http.createServer(function (request, response) {
     const pathname = url.parse(request.url).pathname;
     const param = url.parse(request.url, true).query;
-    log(pathname);
     if (isStaticRequest(pathname)) {
         globalConf.path = globalConf.path.replace(/\r/, "");
         const file = fs.readFileSync(globalConf.path + pathname);
@@ -37,7 +35,6 @@ const server = http.createServer(function (request, response) {
         }
     }
 }).listen(globalConf.port);
-log('服务以启动');
 
 // 判断请求的是否是静态文件
 function isStaticRequest(pathname) {

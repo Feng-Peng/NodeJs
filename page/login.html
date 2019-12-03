@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="./index.css">
-    <script src="login.js"></script>
+    <!-- <script src="login.js"></script> -->
+    <script>
+        function login() {
+            const stuNum = document.getElementById('stuNum').value;
+            const password = document.getElementById('password').value;
+
+            const params = 'stuNum=' + stuNum + '&password=' + password;
+            xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", "/login?" + params, true);
+            xmlHttp.send(null);
+
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    console.log(xmlHttp.responseText);
+                    console.log(typeof xmlHttp.responseText);
+                    if (xmlHttp.responseText == 'OK') {
+                        alert('成功');
+                    } else {
+                        alert('失败');
+                    }
+                }
+            }
+        }
+    </script>
 </head>
+
 <body>
-    <div>hello world</div>
-    <img src="./dog.jpg" alt="dog">
+    <input type="text" name="stuNum" id="stuNum" placeholder="学号">
+    <input type="password" name="password" id="password" placeholder="密码">
+    <input type="submit" value="提交" onClick="login()">
 </body>
+
 </html>
