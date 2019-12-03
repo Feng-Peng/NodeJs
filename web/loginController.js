@@ -1,9 +1,15 @@
 const path = new Map();
+const studentService = require('../service/studentService')
 
 function getData(request, response){
-    response.writeHead(200);
-    response.write('hello');
-    response.end();
+    studentService.queryAllStudent(function (result) {
+        const resultArr = [];
+        for(let i = 0; i < result.length; i ++){
+            resultArr.push(result[i].name);
+        }
+        response.write(resultArr.toString());
+        response.end();
+    })
 }
 path.set('/getData',getData);
 function getData2(request, response){
