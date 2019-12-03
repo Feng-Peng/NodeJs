@@ -21,7 +21,13 @@ const server = http.createServer(function (request, response) {
         }
     } else { // 访问的是动态资源
         if (loader.get(pathname) !== null) {
-            loader.get(pathname)(request, response);
+            try {
+                loader.get(pathname)(request, response);
+            } catch (e) {
+                response.writeHead(500);
+                response.write('<html><body><h1>500 Error</h1></body></html>');
+                response.end();
+            }
         } else {
             response.writeHead(404);
             response.write('<html><body><h1>404 Not Found</h1></body></html>');
