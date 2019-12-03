@@ -7,6 +7,15 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "loginController",
+            "program": "${workspaceFolder}/web/loginController.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "conf",
             "program": "${workspaceFolder}/conf.js",
             "skipFiles": [
@@ -20,7 +29,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\server.js"
+            "program": "${workspaceFolder}\\index.js"
         }
     ]
 }

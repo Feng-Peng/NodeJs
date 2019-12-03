@@ -7,4 +7,9 @@ for (let i = 0; i < confs.length; i++) {
     const value = confs[i].split('=')[1];
     globalConf[key] = value;
 }
+if (globalConf.static_path_type) {
+    globalConf.static_file_type = globalConf.static_path_type.split('|');
+} else {
+    throw new Error('配置文件异常，缺少：static_file_type');
+}
 module.exports = globalConf;
