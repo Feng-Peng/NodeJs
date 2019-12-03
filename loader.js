@@ -2,6 +2,7 @@ const fs = require('fs');
 const globalConfig = require('./conf');
 
 const controllerSet = [];
+globalConfig["web_path"] = globalConfig["web_path"].replace(/\r/, "");
 const files = fs.readdirSync(globalConfig["web_path"]);
 const pathMap = new Map()
 
