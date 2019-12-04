@@ -14,20 +14,24 @@ function getData(request, response) {
 }
 path.set('/getData', getData);
 function login(request, response) {
-    const params = url.parse(request.url, true).query;
-    studentService.queryStudentByStuNum(params.stuNum, result => {
-        let res = '';
-        if (result == null || result.length == 0) {
-            res = 'Fail';
-        } else {
-            if (result[0].pwd == params.password) {
-                res = 'OK';
+    request.on('data', function (data) {
+        // console.log(data.toString())
+        const stuNum = data.toString().split('&')[0].split('=')[1];
+        const password = data.toString().split('&')[1].split('=')[1];
+        studentService.queryStudentByStuNum(stuNum, result => {
+            let res = '';
+            if (result == null || result.length == 0) {
+                res = 'Fail';
             } else {
-                res = 'Fail'
+                if (result[0].pwd == password) {
+                    res = 'OK';
+                } else {
+                    res = 'Fail'
+                }
             }
-        }
-        response.write(res);
-        response.end();
+            response.write(res);
+            response.end();
+        })
     })
 }
 path.set('/login', login);

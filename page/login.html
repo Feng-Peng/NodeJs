@@ -15,8 +15,8 @@
 
             const params = 'stuNum=' + stuNum + '&password=' + password;
             xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", "/login?" + params, true);
-            xmlHttp.send(null);
+            xmlHttp.open("post", "/login", true);
+            xmlHttp.send(params);
 
             xmlHttp.onreadystatechange = function () {
                 if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
