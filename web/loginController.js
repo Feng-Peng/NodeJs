@@ -15,7 +15,6 @@ function getData(request, response) {
 path.set('/getData', getData);
 function login(request, response) {
     request.on('data', function (data) {
-        // console.log(data.toString())
         const stuNum = data.toString().split('&')[0].split('=')[1];
         const password = data.toString().split('&')[1].split('=')[1];
         studentService.queryStudentByStuNum(stuNum, result => {
@@ -29,7 +28,10 @@ function login(request, response) {
                     res = 'Fail'
                 }
             }
-            response.write(res);
+            // response.write(res);
+            // response.end();
+
+            response.writeHead(302, {"location": "/main.html"});
             response.end();
         })
     })

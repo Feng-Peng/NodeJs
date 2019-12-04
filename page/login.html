@@ -24,6 +24,8 @@
                     console.log(typeof xmlHttp.responseText);
                     if (xmlHttp.responseText == 'OK') {
                         alert('成功');
+                        // 通过js的方式进行页面的跳转
+                        location.href = '/main.html';
                     } else {
                         alert('失败');
                     }
@@ -34,9 +36,16 @@
 </head>
 
 <body>
-    <input type="text" name="stuNum" id="stuNum" placeholder="学号">
+    <!-- <input type="text" name="stuNum" id="stuNum" placeholder="学号">
     <input type="password" name="password" id="password" placeholder="密码">
-    <input type="submit" value="提交" onClick="login()">
+    <input type="submit" value="提交" onClick="login()"> -->
+
+    <form action="/login" method="POST">
+        <input type="text" name="stuNum" id="stuNum" placeholder="学号">
+        <input type="password" name="password" id="password" placeholder="密码">
+        <input type="submit" value="提交">
+    </form>
+
 </body>
 
 </html>
