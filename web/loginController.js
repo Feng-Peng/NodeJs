@@ -21,18 +21,21 @@ function login(request, response) {
             let res = '';
             if (result == null || result.length == 0) {
                 res = 'Fail';
+                response.writeHead(302, { "location": "/error.html", "Set-Cookie": "id=" + result[0].id });
+                response.end();
             } else {
                 if (result[0].pwd == password) {
                     res = 'OK';
+                    response.writeHead(302, { "location": "/main.html", "Set-Cookie": "id=" + result[0].id });
+                    response.end();
                 } else {
-                    res = 'Fail'
+                    res = 'Fail';
+                    response.writeHead(302, { "location": "/error.html", "Set-Cookie": "id=" + result[0].id });
+                    response.end();
                 }
             }
             // response.write(res);
             // response.end();
-
-            response.writeHead(302, {"location": "/main.html"});
-            response.end();
         })
     })
 }
