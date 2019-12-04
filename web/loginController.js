@@ -1,6 +1,6 @@
 const path = new Map();
 const url = require('url');
-const studentService = require('../service/studentService')
+const studentService = require('../service/studentService');
 
 function getData(request, response) {
     studentService.queryAllStudent(function (result) {

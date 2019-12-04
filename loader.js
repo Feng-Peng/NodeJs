@@ -1,3 +1,4 @@
+// 读取web层所有的文件，放到map中返回出去，一个url对应一个方法
 const fs = require('fs');
 const globalConfig = require('./conf');
 

@@ -3,10 +3,17 @@ const url = require('url');
 const fs = require('fs');
 const http = require('http');
 const loader = require('./loader');
+const filterSet = require('./filterLoader')
 
 const server = http.createServer(function (request, response) {
     const pathname = url.parse(request.url).pathname;
     const param = url.parse(request.url, true).query;
+
+    for(let i = 0; i < filterSet.length; i ++) {
+        if(!filterSet[i](request, response)){
+            return;
+        }
+    }
     if (isStaticRequest(pathname)) {
         globalConf.path = globalConf.path.replace(/\r/, "");
         const file = fs.readFileSync(globalConf.path + pathname);
