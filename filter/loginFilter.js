@@ -7,7 +7,6 @@ function loginFilter(request, response) {
         return true;
     }
     if (request.headers.cookie) {
-        console.log(request.headers.cookie)
         const cookies = request.headers.cookie.split(';');
         for (let i = 0; i < cookies.length; i++) {
             if (cookies[i].split('=')[0].trim() == 'id') {
